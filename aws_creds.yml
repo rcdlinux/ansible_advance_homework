@@ -1,6 +1,7 @@
 - hosts: tag_AnsibleGroup_bastions
   gather_facts: true
   become: true
+  vars_file: aws_vault
   tasks:
   - name: Install required packages 
     yum: 
@@ -25,8 +26,8 @@
       state: present
       kind: ssh
       tower_host: tower1.{{tower_guid}}.example.opentlc.com
-      tower_username: admin
-      tower_password: r3dh4t1!
+      tower_username: "{{ user_name }}"
+      tower_password: "{{ password }}"
       tower_verify_ssl: no
       ssh_key_data: "/root/.ssh/{{ file_to_copy.stdout }}"
       username: ec2-user
@@ -35,8 +36,8 @@
       name: "3 tier app on Prod"
       machine_credential: "Creds for AWS instances"
       tower_host: tower1.{{tower_guid}}.example.opentlc.com
-      tower_username: admin
-      tower_password: r3dh4t1!
+      tower_username: "{{ user_name }}"
+      tower_password: "{{ password }}"
       tower_verify_ssl: no
       state: present
       job_type: run
@@ -47,8 +48,8 @@
       name: "Smoke test Prod env"
       machine_credential: "Creds for AWS instances"
       tower_host: tower1.{{tower_guid}}.example.opentlc.com
-      tower_username: admin
-      tower_password: r3dh4t1!
+      tower_username: "{{ user_name }}"
+      tower_password: "{{ password }}"
       tower_verify_ssl: no
       state: present
       job_type: run
