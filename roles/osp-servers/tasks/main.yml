@@ -19,8 +19,8 @@
         cat /tmp/openstack.pub >> /home/cloud-user/.ssh/authorized_keys
         curl -o /tmp/internal.repo http://www.opentlc.com/download/ansible_bootcamp/repo/internal.repo
         cp /tmp/internal.repo /etc/yum.repos.d/internal.repo
-    with_dict: "{{ osp_servers }}"
     register: instanceip
+    with_dict: "{{ osp_servers }}"
 
   - name: Add floating IP to "{{ item.value.instance_name }}"
     os_floating_ip:
@@ -31,8 +31,8 @@
       network: ext_network
       wait: true
       timeout: 180
-    with_dict: "{{ osp_servers }}"
     register: instancefloatingip
+    with_dict: "{{ osp_servers }}"
 
   - name: Show "{{ instanceip }}" public IP
     debug: var=instancefloatingip.floating_ip.floating_ip_address
