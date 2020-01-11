@@ -9,7 +9,9 @@ osp_servers:
     flavor: m2.small
     security_group_name: frontend
     meta:
-      - { group: frontends, deployment_name: QA}
+      - { group: frontends, deployment_name: QA }
+    group: frontends
+    deployment: QA
   app1:
     instance_name: app1
     state: present
@@ -18,7 +20,9 @@ osp_servers:
     flavor: m2.small
     security_group_name: apps
     meta:
-      - { group: apps, deployment_name: QA}
+      - { group: apps, deployment_name: QA }
+    group: app1
+    deployment: QA
   app2:
     instance_name: app2
     state: present
@@ -27,7 +31,9 @@ osp_servers:
     flavor: m2.small
     security_group_name: apps
     meta:
-      - { group: apps, deployment_name: QA}
+      - { group: apps, deployment_name: QA }
+    group: app2
+    deployment: QA
   db:
     instance_name: db
     state: present
@@ -36,4 +42,7 @@ osp_servers:
     flavor: m2.small
     security_group_name: db
     meta:
-      - { group: appdbs, deployment_name: QA}
+      - { group: appdbs, deployment_name: QA }
+    group: db
+    deployment: QA
+ 

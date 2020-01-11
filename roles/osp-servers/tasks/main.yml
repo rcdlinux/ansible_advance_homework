@@ -6,7 +6,7 @@
       cloud: ospcloud
       name: "{{ item.value.instance_name }}"
       image: rhel-guest
-      meta: "group={{ group }},deployment_name={{ deployment }}"
+      meta: "group={{ item.value.group }},deployment_name={{ item.value.deployment }}"
       flavor: m2.small
       security_groups: "{{ item.value.security_group_name }}"
       key_name: ansible_ssh
