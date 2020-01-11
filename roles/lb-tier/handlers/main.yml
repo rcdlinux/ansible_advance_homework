@@ -1,2 +1,13 @@
 ---
 # handlers file for lb-tier
+
+- name: start the payload
+  service:
+    name: {{ payload }}
+    state: started
+
+- name: restart the payload
+  service:
+    name: "{{ payload }}"
+    state: restarted
+

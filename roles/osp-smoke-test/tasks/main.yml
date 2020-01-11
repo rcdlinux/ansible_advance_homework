@@ -13,7 +13,7 @@
 
   - name: Curl website on frontend OSP instance
     uri:
-      url: http://frontend."{{ GUID }}".example.opentlc.com/ansible
+      url: http://frontend."{{ GUID }}".example.opentlc.com/index.html
     register: webpage
     tags:
       - osp.smoke
