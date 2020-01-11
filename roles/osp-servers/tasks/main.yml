@@ -4,11 +4,11 @@
   - name: Create new server instances and attaches them a network and passes metadata to the instance
     os_server:
       cloud: ospcloud
-      name: "{{ osp_servers.[0].name }}"
+      name: "{{ instance_name }}"
       image: rhel-guest
       meta: "group={{ group }},deployment_name={{ deployment }}"
       flavor: m2.small
-      security_groups: "{{ osp_servers.[0].security_group }}"
+      security_groups: "{{ security_group_name }}"
       key_name: ansible_ssh
       wait: yes
       nics:
@@ -21,12 +21,12 @@
         cp /tmp/internal.repo /etc/yum.repos.d/internal.repo
     register: instanceip
 
-  - name: Add floating IP to "{{ osp_servers.[0].name }}"
+  - name: Add floating IP to "{{ instance_name }}"
     os_floating_ip:
       cloud: ospcloud
       state: present
       reuse: yes
-      server: "{{ osp_servers.[0].name }}"
+      server: "{{ instance_name }}"
       network: ext_network
       wait: true
       timeout: 180
@@ -35,7 +35,7 @@
   - name: Show "{{ instanceip }}" public IP
     debug: var=instancefloatingip.floating_ip.floating_ip_address
 
-  - name: Wait for "{{ osp_servers.[0].name }}" to be available
+  - name: Wait for "{{ instance_name }}" to be available
     wait_for:
       host: "{{ instancefloatingip.floating_ip.floating_ip_address }}"
       port: 22
