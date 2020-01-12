@@ -15,7 +15,7 @@
 
   - name: Curl website on frontend OSP instance
     uri:
-      url: http://"{{ openstack_info['public_v4'] }}"/index.html
+      url: http://"{{ openstack_info['openstack_servers']['public_v4'] }}"/index.html
     register: webpage
     tags:
       - osp.smoke
