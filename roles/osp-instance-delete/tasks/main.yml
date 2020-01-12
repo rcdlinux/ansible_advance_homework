@@ -10,8 +10,8 @@
     debug: 
       var: result
 
-  - name: Delete instance "{{ result['openstack_servers']['OS-EXT-SRV-ATTR\:instance_name'] }}"
+  - name: Delete instance "{{ result['openstack_servers']['instance_name'] }}"
     os_server:
       cloud: ospcloud
-      name: "{{ result['openstack_servers']['OS-EXT-SRV-ATTR\:instance_name'] }}"
+      name: "{{ result['openstack_servers']['instance_name'] }}"
       state: absent
