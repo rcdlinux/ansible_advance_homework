@@ -11,6 +11,10 @@
     tags:
       - osp.smoke
 
+  - name: Show info from Openstack servers
+    debug:
+      var: openstack_info
+
   - name: Curl website on frontend OSP instance
     uri:
       url: http://frontend.{{ GUID }}.example.opentlc.com/index.html

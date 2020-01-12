@@ -1,3 +1,4 @@
+export GUID=e7ef
 export TOWER_GUID=e7ef
 export OSP_GUID=1102
 export OPENTLC_LOGIN=rduarte-redhat.com
