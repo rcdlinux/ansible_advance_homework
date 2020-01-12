@@ -22,7 +22,7 @@
     register: instanceip
     with_dict: "{{ osp_servers }}"
 
-  - name: Add floating IP to the instances
+  - name: Add floating IP to instance
     os_floating_ip:
       cloud: ospcloud
       state: present
