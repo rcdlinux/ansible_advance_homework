@@ -13,5 +13,7 @@
   - name: Delete instance "{{ result['openstack_servers']['instance_name'] }}"
     os_server:
       cloud: ospcloud
-      name: "{{ result['openstack_servers']['instance_name'] }}"
+      name: "{{ item['public_v4'] }}"
       state: absent
+    with_items: "{{ result['ansible_facts']['openstack_servers'] }}"
+
