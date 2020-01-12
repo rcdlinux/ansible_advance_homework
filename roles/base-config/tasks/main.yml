@@ -28,6 +28,6 @@
   yum:
     name: 
       - httpd
-      - python3-pip
+      - python
     state: latest
 
