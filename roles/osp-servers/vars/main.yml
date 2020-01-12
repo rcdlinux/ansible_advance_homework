@@ -21,7 +21,7 @@ osp_servers:
     security_group_name: apps
     meta:
       - { group: apps, deployment_name: QA }
-    group: app1
+    group: apps
     deployment: QA
   app2:
     instance_name: app2
@@ -32,7 +32,7 @@ osp_servers:
     security_group_name: apps
     meta:
       - { group: apps, deployment_name: QA }
-    group: app2
+    group: apps
     deployment: QA
   db:
     instance_name: db
@@ -43,6 +43,6 @@ osp_servers:
     security_group_name: db
     meta:
       - { group: appdbs, deployment_name: QA }
-    group: db
+    group: appdbs
     deployment: QA
  
