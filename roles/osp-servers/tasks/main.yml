@@ -40,7 +40,7 @@
 
   - name: Show "{{ instanceip }}" public IP
     debug:
-      var: instancefloatingip['results']['floating_ip']['floating_ip_address']
+      msg: instancefloatingip['results']['floating_ip']['floating_ip_address']
 
   - name: Wait for "{{ item['value']['instance_name'] }}" to be available
     wait_for:
