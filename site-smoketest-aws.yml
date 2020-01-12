@@ -17,6 +17,7 @@
   - name: Curl website on frontend AWS instance for smoke test
     uri:
       url: http://{{ item['public_v4'] }}/index.html
+      return_content: yes
     loop: "{{ openstack_info['openstack_servers'] }}"
     register: awspage
     tags:
@@ -24,6 +25,6 @@
 
   - name: Fail if 'Ansible has done its job' is not in the page content
     fail:
-    when: "'Ansible has done its job' not in awspage.results[0].content"
+    when: "'Ansible has done its job' not in {{ awspage.['content'] }}"
     tags:
       - aws.smoke
