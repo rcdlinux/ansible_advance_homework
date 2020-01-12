@@ -36,18 +36,18 @@
 
   - name: Show var collected on previows playbook
     debug:
-      var: instancefloatingip['results']['floating_ip']
+      var: instancefloatingip['results']
 
   - name: Show instance public IP
     debug:
-      msg: "{{ instancefloatingip['results']['floating_ip']['floating_ip_address'] }}"
-
-  - name: Wait for "{{ item['value']['instance_name'] }}" to be available
+      msg: "{{ item['floating_ip']['floating_ip_address'] }}"
+    loop: "{{ instancefloatingip['results'] }}" 
+ 
+  - name: Wait for instance to be available
     wait_for:
-      # host: "{{ instancefloatingip.floating_ip.floating_ip_address }}"
-      host: "{{ instancefloatingip['results']['floating_ip']['floating_ip_address'] }}" 
+      host: "{{ item['floating_ip']['floating_ip_address'] }}" 
       port: 22
       search_regex: OpenSSH
       timeout: 60
     delegate_to: "{{ inventory_hostname }}"
-    with_dict: "{{ osp_servers }}"
+    loop: "{{ instancefloatingip['results'] }}" 

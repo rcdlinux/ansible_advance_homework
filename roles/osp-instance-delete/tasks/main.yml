@@ -10,9 +10,9 @@
     debug: 
       var: result
 
-  - name: Delete instance "{{ item['instance_name'] }}"
+  - name: Delete instance by id
     os_server:
       cloud: ospcloud
-      name: "{{ item['instance_name'] }}"
+      name: "{{ item['id'] }}"
       state: absent
     loop: "{{ result['openstack_servers'] }}"
