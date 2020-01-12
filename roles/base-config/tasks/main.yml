@@ -9,9 +9,15 @@
     backup: yes
 
 - name: enable repos
-  template:
-    src: repos_template.j2
+  get_url:
+    url: "{{ base_config_repo }}"
     dest: /etc/yum.repos.d/open_three-tier-app.repo
+    mode: 0644
+
+- name: enable epel repo for workaround on python3-pip not found 
+  template:
+    src: repos_template_epel.j2
+    dest: /etc/yum.repos.d/open_three-tier-app_epel.repo
     mode: 0644
 
 - name: setup hostname
