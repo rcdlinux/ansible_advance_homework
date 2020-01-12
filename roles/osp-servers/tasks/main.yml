@@ -36,9 +36,9 @@
 
   - name: Show var collected on previows playbook
     debug:
-      var: instancefloatingip.results
+      var: instancefloatingip['results']
 
-  - name: Show "{{ instanceip }}" public IP
+  - name: Show instance public IP
     debug:
       msg: "{{ instancefloatingip['results']['floating_ip']['floating_ip_address'] }}"
 
