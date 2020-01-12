@@ -36,7 +36,7 @@
 
   - name: Show var collected on previows playbook
     debug:
-      var: instancefloatingip['results']
+      var: instancefloatingip['results']['floating_ip']
 
   - name: Show instance public IP
     debug:
