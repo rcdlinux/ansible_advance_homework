@@ -43,12 +43,12 @@
       var: "{{ item['floating_ip']['floating_ip_address'] }}"
     loop: "{{ instancefloatingip['results'] }}" 
  
-  - name: Wait for instance to be available
+  - name: Wait for 5 minutes until instance to be available
     wait_for:
       host: "{{ item['floating_ip']['floating_ip_address'] }}" 
       port: 22
-      connect_timeout: 120
+      connect_timeout: 600
       search_regex: OpenSSH
-      timeout: 120
+      timeout: 600
     delegate_to: "{{ inventory_hostname }}"
     loop: "{{ instancefloatingip['results'] }}" 
