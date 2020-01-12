@@ -5,9 +5,14 @@
       cloud: ospcloud
       region_name: RegionOne
     register: result
+  
+  - name: Debug Instance Info
+    debug: 
+      var: result
 
   - name: Delete instances
     os_server:
       cloud: ospcloud
-      name: "{{ name }}"
+      name: "{{ item.value.instance_name }}"
       state: absent
+    with_dict: "{{ osp_servers }}"

@@ -22,7 +22,7 @@
     register: instanceip
     with_dict: "{{ osp_servers }}"
 
-  - name: Add floating IP to "{{ item.value.instance_name }}"
+  - name: Add floating IP to the instances
     os_floating_ip:
       cloud: ospcloud
       state: present
@@ -35,11 +35,12 @@
     with_dict: "{{ osp_servers }}"
 
   - name: Show "{{ instanceip }}" public IP
-    debug: var=instancefloatingip.public_v4
+    debug: var=instancefloatingip.floating_ip.floating_ip_address
+
 
   - name: Wait for "{{ item.value.instance_name }}" to be available
     wait_for:
-      host: "{{ instancefloatingip.public_v4 }}"
+      host: "{{ instancefloatingip.floating_ip.floating_ip_address }}"
       port: 22
       search_regex: OpenSSH
       timeout: 600
