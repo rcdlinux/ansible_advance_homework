@@ -4,11 +4,11 @@
   - name: Create new server instances and attaches them a network and passes metadata to the instance
     os_server:
       cloud: ospcloud
-      name: "{{ item.value.instance_name }}"
+      name: "{{ item['value']['instance_name'] }}"
       image: rhel-guest
-      meta: "group={{ item.value.group }},deployment_name={{ item.value.deployment }}"
+      meta: "group={{ item['value']['group'] }},deployment_name={{ item['value']['deployment'] }}"
       flavor: m2.small
-      security_groups: "{{ item.value.security_group_name }}"
+      security_groups: "{{ item['value']['security_group_name'] }}"
       key_name: ansible_ssh
       wait: yes
       nics:
@@ -27,21 +27,23 @@
       cloud: ospcloud
       state: present
       reuse: yes
-      server: "{{ item.value.instance_name }}"
+      server: "{{ item['value']['instance_name'] }}"
       network: ext_network
       wait: true
-      timeout: 180
+      timeout: 60
     register: instancefloatingip
     with_dict: "{{ osp_servers }}"
 
   - name: Show "{{ instanceip }}" public IP
-    # debug: var=instancefloatingip.floating_ip.floating_ip_address
-    debug: var=instancefloatingip
+    debug:
+      var: instancefloatingip['results']['floating_ip']['floating_ip_address']
 
-  - name: Wait for "{{ item.value.instance_name }}" to be available
+  - name: Wait for "{{ item['value']['instance_name'] }}" to be available
     wait_for:
-      host: "{{ instancefloatingip.floating_ip.floating_ip_address }}"
+      # host: "{{ instancefloatingip.floating_ip.floating_ip_address }}"
+      host: "{{ instancefloatingip['results']['floating_ip']['floating_ip_address'] }}" 
       port: 22
       search_regex: OpenSSH
-      timeout: 600
+      timeout: 60
     delegate_to: "{{ inventory_hostname }}"
+    with_dict: "{{ osp_servers }}"
