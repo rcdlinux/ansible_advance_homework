@@ -1,5 +1,17 @@
 - hosts: frontends
   gather_facts: false
   tasks:
-  - name: Use Uri module for wrting smoke test.
+
+  - name: Curl website on frontend AWS instance for smoke test
+    uri:
+      url: http://frontend."{{ GUID }}".example.opentlc.com/index.html
+    register: awspage
+    tags:
+      - aws.smoke
+
   - name: Fail if 'Ansible has done its job' is not in the page content
+    fail:
+    when: "'Ansible has done its job' not in awspage.results[0].content"
+    tags:
+      - aws.smoke
+
