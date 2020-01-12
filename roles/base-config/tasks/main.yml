@@ -21,7 +21,7 @@
 - name: install base tools and packages
   yum:
     name: 
-      - httpie
+      - httpd
       - python-pip
     state: latest
 
