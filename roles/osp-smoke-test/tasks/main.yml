@@ -1,7 +1,5 @@
 ---
-# tasks file for osp-smoke-test- hosts: workstation
-  gather_facts: false
-  tasks:
+# tasks file for osp-smoke-test
 
   - name: Get info from OpenStack servers
     os_server_info:
@@ -17,7 +15,7 @@
 
   - name: Curl website on frontend OSP instance
     uri:
-      url: http://frontend.{{ GUID }}.example.opentlc.com/index.html
+      url: http://"{{ openstack_info['public_v4'] }}"/index.html
     register: webpage
     tags:
       - osp.smoke
