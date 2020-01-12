@@ -35,28 +35,26 @@
   - name: Update Prod Job template
     tower_job_template:
       name: "3 tier app on Prod"
-      credential: "Creds for AWS instances"
+      machine_credential: "Creds for AWS instances"
       tower_host: tower1.{{tower_guid}}.example.opentlc.com
       tower_username: "{{ user_name }}"
       tower_password: "{{ password }}"
-      validate_certs: no
+      tower_verify_ssl: no
       state: present
       job_type: run
       playbook: site-3tier-app.yml
       project: "Homework Assignment"
-      vault_credential: aws_vault
   - name: Update Prod Smoke Job template
     tower_job_template:
       name: "Smoke test Prod env"
-      credential: "Creds for AWS instances"
+      machine_credential: "Creds for AWS instances"
       tower_host: tower1.{{tower_guid}}.example.opentlc.com
       tower_username: "{{ user_name }}"
       tower_password: "{{ password }}"
-      validate_certs: no
+      tower_verify_ssl: no
       state: present
       job_type: run
       playbook: site-smoketest-aws.yml
       project: "Homework Assignment"
-      vault_credential: aws_vault
 
     
