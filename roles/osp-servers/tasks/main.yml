@@ -34,6 +34,10 @@
     register: instancefloatingip
     with_dict: "{{ osp_servers }}"
 
+  - name: Show var collected on previows playbook
+    debug:
+      var: instancefloatingip
+
   - name: Show "{{ instanceip }}" public IP
     debug:
       var: instancefloatingip['results']['floating_ip']['floating_ip_address']
