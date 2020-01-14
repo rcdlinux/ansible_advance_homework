@@ -1,4 +1,6 @@
-- hosts: localhost
+---
+- name: Use setup.sh to install Isolated Node 
+  hosts: localhost
   gather_facts: false
   tasks:
   - name: Append inventory file

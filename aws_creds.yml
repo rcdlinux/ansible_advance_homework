@@ -1,4 +1,6 @@
-- hosts: tag_AnsibleGroup_bastions
+---
+- name: Deploy AWS Credentials with tower modules updated parameters 
+  hosts: tag_AnsibleGroup_bastions
   gather_facts: true
   become: true
   vars_files:

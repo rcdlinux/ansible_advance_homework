@@ -1,4 +1,6 @@
-- hosts: workstation
+---
+- name: Smoke test for OSP Instance
+  hosts: workstation
   become: yes
   roles:
     - osp-smoke-test

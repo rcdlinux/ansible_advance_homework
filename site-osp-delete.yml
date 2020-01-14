@@ -1,4 +1,6 @@
-- hosts: workstation
+---
+- name: Cleanup for OSP Instances
+  hosts: workstation
   become: yes
   roles:
     - osp-instance-delete
