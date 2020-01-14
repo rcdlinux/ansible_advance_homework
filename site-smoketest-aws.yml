@@ -1,4 +1,5 @@
-- hosts: frontends
+- name: Check AWS servers with a simple smoke test
+  hosts: frontends
   gather_facts: false
   tasks:
 
