@@ -1,6 +1,6 @@
 ---
 - name: Check AWS servers with a simple smoke test
-  hosts: frontends
+  hosts: workstation
   gather_facts: false
   tasks:
 
