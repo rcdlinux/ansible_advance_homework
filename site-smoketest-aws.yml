@@ -1,26 +1,26 @@
 ---
-- name: Check AWS servers with a simple smoke test
-  hosts: localhost
-  gather_facts: false
-  vars_files:
-    - env_guids.yml
-  tasks:
-
-  - name: Create In-memory Inventory
-    add_host:
-      name: workstation-{{OSP_GUID}}.rhpds.opentlc.com
-      group: workstation
-     # ansible_ssh_private_key_file: /root/.ssh/mykey.pem
-     # ansible_ssh_user: rduarte-redhat.com
-
-
-- name: Get AWS Servers info from In-memory Inventory
-  hosts: workstation
-  gather_facts: false
-  vars_files:
-    - env_guids.yml
-  tasks:
-
+# - name: Check AWS servers with a simple smoke test
+#   hosts: localhost
+#   gather_facts: false
+#   vars_files:
+#     - env_guids.yml
+#   tasks:
+# 
+#   - name: Create In-memory Inventory
+#     add_host:
+#       name: workstation-{{OSP_GUID}}.rhpds.opentlc.com
+#       group: workstation
+#      # ansible_ssh_private_key_file: /root/.ssh/mykey.pem
+#      # ansible_ssh_user: rduarte-redhat.com
+# 
+# 
+# - name: Get AWS Servers info from In-memory Inventory
+#   hosts: workstation
+#   gather_facts: false
+#   vars_files:
+#     - env_guids.yml
+#   tasks:
+# 
   - name: OpenStack servers
     os_server_info:
       cloud: ospcloud
