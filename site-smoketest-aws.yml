@@ -1,11 +1,11 @@
 ---
- - name: Check AWS servers with a simple smoke test
-   hosts: localhost
-   gather_facts: false
-   vars_files:
-     - env_guids.yml
-   tasks:
- 
+# - name: Check AWS servers with a simple smoke test
+#   hosts: localhost
+#   gather_facts: false
+#   vars_files:
+#     - env_guids.yml
+#   tasks:
+# 
 #   - name: Create In-memory Inventory
 #     add_host:
 #       name: workstation-{{OSP_GUID}}.rhpds.opentlc.com
