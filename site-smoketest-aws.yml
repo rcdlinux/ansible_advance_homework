@@ -1,6 +1,6 @@
 ---
 - name: Check AWS servers with a simple smoke test
-  hosts: workstation
+  hosts: tag_instance_filter_three_tier_app_rduarte*
   gather_facts: false
   tasks:
 
@@ -18,7 +18,10 @@
 
   - name: Curl website on frontend AWS instance for smoke test
     uri:
-      url: http://{{ item['public_v4'] }}/index.html
+      # TODO: Get GUID from 3 tier app OpenTLC - http://frontend1.{{ GUID }}.example.opentlc.com
+      #  url: http://{{ item['public_v4'] }}/index.html
+      #  url: http://frontend1.{{ GUID }}.example.opentlc.com/index.html
+      url: http://frontend1.086a.example.opentlc.com
       return_content: yes
     loop: "{{ openstack_info['openstack_servers'] }}"
     register: awspage
