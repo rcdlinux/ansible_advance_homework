@@ -1,13 +1,30 @@
 ---
 - name: Check AWS servers with a simple smoke test
-  hosts: tag_instance_filter_three_tier_app_rduarte*
+  hosts: localhost
   gather_facts: false
+  vars_files:
+    - env_guids.yml
   tasks:
 
-  - name: Get info from AWS servers
+  - name: Create In-memory Inventory
+    add_host:
+      name: workstation-{{OSP_GUID}}.rhpds.opentlc.com
+      group: workstation
+      ansible_ssh_private_key_file: ~/.ssh/openstack.pem
+      ansible_ssh_user: cloud-user
+
+
+- name: Get AWS Servers info from In-memory Inventory
+  hosts: workstation
+  gather_facts: false
+  vars_files:
+    - env_guids.yml
+  tasks:
+
+  - name: OpenStack servers
     os_server_info:
-     cloud: ospcloud
-     server: 'frontend'
+      cloud: ospcloud
+      server: 'frontend'
     register: openstack_info
     tags:
       - aws.smoke
@@ -18,10 +35,8 @@
 
   - name: Curl website on frontend AWS instance for smoke test
     uri:
-      # TODO: Get GUID from 3 tier app OpenTLC - http://frontend1.{{ GUID }}.example.opentlc.com
-      #  url: http://{{ item['public_v4'] }}/index.html
-      #  url: http://frontend1.{{ GUID }}.example.opentlc.com/index.html
-      url: http://frontend1.086a.example.opentlc.com
+      ###  url: http://{{ item['public_v4'] }}/index.html
+      url: http://frontend.{{TIER_GUID}}.example.opentlc.com
       return_content: yes
     loop: "{{ openstack_info['openstack_servers'] }}"
     register: awspage
@@ -33,3 +48,4 @@
     when: "'Ansible has done its job' not in {{ awspage['content'] }}"
     tags:
       - aws.smoke
+

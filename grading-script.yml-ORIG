@@ -20,7 +20,7 @@
   - name: Curl website
     command: curl "http://{{item.public_v4}}"
     with_items:
-      - "{{ openstack_info.openstack_servers }}"
+       - "{{ openstack_info.ansible_facts.openstack_servers }}"
     register: webpage
   - name: Fail
     fail:
