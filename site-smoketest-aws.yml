@@ -27,7 +27,8 @@
       server: 'frontend'
     register: openstack_info
     tags:
-      - aws.smoke
+      - lbs
+      - haproxy
 
   - name: Show info from AWS servers
     debug:
@@ -41,11 +42,9 @@
     loop: "{{ openstack_info['openstack_servers'] }}"
     register: awspage
     tags:
-      - aws.smoke
+      - lbs
+      - haproxy
 
   - name: Fail if 'Ansible has done its job' is not in the page content
     fail:
     when: "'Ansible has done its job' not in {{ awspage['content'] }}"
-    tags:
-      - aws.smoke
-
