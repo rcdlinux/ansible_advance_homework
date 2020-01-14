@@ -43,7 +43,7 @@
       var: "{{ item['floating_ip']['floating_ip_address'] }}"
     loop: "{{ instancefloatingip['results'] }}" 
  
-  - name: Wait for 5 minutes until instance to be available
+  - name: Wait for 10 minutes until instance to be available
     wait_for:
       host: "{{ item['floating_ip']['floating_ip_address'] }}" 
       port: 22
