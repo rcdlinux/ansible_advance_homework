@@ -2,6 +2,7 @@
 - name: Check AWS servers with a simple smoke test
   hosts: localhost
   gather_facts: false
+  become: yes
   vars_files:
     - env_guids.yml
   tasks:
