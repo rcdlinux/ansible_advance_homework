@@ -14,20 +14,20 @@
     dest: /etc/yum.repos.d/open_three-tier-app.repo
     mode: 0644
 
-- name: enable epel repo for workaround on python3-pip not found 
-  template:
-    src: repos_template_epel.j2
-    dest: /etc/yum.repos.d/open_three-tier-app_epel.repo
-    mode: 0644
-
-- name: setup hostname
-  hostname:
-    name: "{{ inventory_hostname }}"
+ # - name: enable epel repo for workaround on python3-pip not found 
+ #   template:
+ #     src: repos_template_epel.j2
+ #     dest: /etc/yum.repos.d/open_three-tier-app_epel.repo
+ #     mode: 0644
+ #
+ # - name: setup hostname
+ #   hostname:
+ #     name: "{{ inventory_hostname }}"
  
 - name: install base tools and packages
   yum:
     name: 
       - httpd
-      - python
+      - python-pip
     state: latest
 
