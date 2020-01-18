@@ -12,4 +12,3 @@
       return_content: yes
     register: awspage
     failed_when: "'Ansible has done its job' not in awspage.content"
-
