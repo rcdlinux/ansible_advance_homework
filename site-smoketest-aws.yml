@@ -14,8 +14,9 @@
       ansible_ssh_user: cloud-user
  
 - name: Get AWS Servers info from In-memory Inventory
-  hosts: workstation-{{OSP_GUID}}.rhpds.opentlc.com 
+  hosts: workstation
   gather_facts: false
+  become: yes
   vars_files:
     - env_guids.yml
   tasks:
