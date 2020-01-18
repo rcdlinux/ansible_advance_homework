@@ -6,23 +6,6 @@
     - env_guids.yml
   tasks:
 
-
-  - name: Create In-memory Inventory
-    add_host:
-      name: workstation-{{OSP_GUID}}.rhpds.opentlc.com
-      group: workstation
-      ansible_ssh_private_key_file: ~/.ssh/openstack.pem
-      ansible_ssh_user: cloud-user
-
-
-- name: Get AWS Servers info from In-memory Inventory
-  hosts: workstation
-  gather_facts: false
-  vars_files:
-    - env_guids.yml
-  tasks:
-
- 
   - name: Curl website on frontend AWS instance for smoke test
     uri:
       url: http://frontend.{{TIER_GUID}}.example.opentlc.com
