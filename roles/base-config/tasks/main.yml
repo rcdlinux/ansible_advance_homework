@@ -14,7 +14,7 @@
     dest: /etc/yum.repos.d/open_three-tier-app.repo
     mode: 0644
 
- # - name: enable epel repo for workaround on python3-pip not found 
+ # - name: try epel repo for workaround on python3-pip not found 
  #   template:
  #     src: repos_template_epel.j2
  #     dest: /etc/yum.repos.d/open_three-tier-app_epel.repo
@@ -28,6 +28,6 @@
   yum:
     name: 
       - httpd
-      - python3-pip
+      - python
     state: latest
 
