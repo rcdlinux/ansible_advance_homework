@@ -17,7 +17,7 @@
   hosts: workstation
   gather_facts: false
   become: yes
-  remote_user: root
+  remote_user: ec2-user
   vars_files:
     - env_guids.yml
   tasks:
