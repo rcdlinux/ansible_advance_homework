@@ -1,6 +1,6 @@
 ==== Ansible Tower Config
 
-* Files to change GUIDs according with lab provisioned for Homework Assignment.
+* Files to change GUIDs according the labs provisioned for Homework Assignment.
 
 [source,text]
 ----
